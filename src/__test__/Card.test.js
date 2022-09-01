@@ -17,7 +17,7 @@ const setup = () => {
   const card = screen.getByRole("card");
   const cardTitle = screen.getByRole("title");
   const cardPrice = screen.getByRole("subTitle");
-  const buttonAdd = screen.getByRole("button");
+  const buttonAdd = screen.getByRole("button", { name: /Add to cart/i });
 
   return {
     card,
