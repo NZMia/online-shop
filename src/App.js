@@ -11,7 +11,7 @@ const App = () => {
   return (
     <div className="mainLayout">
       <header>Header</header>
-      <div className="page">
+      <div className="page justify-around">
         <div className="page__left flex flex-col space-y-4">
           {currentProducts?.map((product) => {
             return <Card product={product} key={product._id} />;

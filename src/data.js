@@ -3,7 +3,7 @@ export const products = [
     name: "Deanston 12 years old",
     price: 99.99,
     SKU: "DEAN",
-    promoCode: 0,
+    promoCode: 1,
     _id: 1,
   },
   {
