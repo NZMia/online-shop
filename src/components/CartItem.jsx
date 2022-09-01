@@ -25,14 +25,14 @@ const CartItem = ({ cartItem }) => {
       </p>
 
       <button
-        className="px-10 py-2 font-semibold rounded-full bg-pampas text-dark hover:text-yellow"
+        className="px-10 py-2 font-semibold rounded-full bg-yellow text-dark hover:text-pampas"
         onClick={handleRemove}
       >
         Remove From Cart
       </button>
 
       <p className="card__subTitle" role="subTotal">
-        subTitle: ${subTotal}
+        subTotal: ${subTotal ? subTotal : 0}
       </p>
     </div>
   );
