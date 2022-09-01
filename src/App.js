@@ -3,11 +3,19 @@ import Card from "./components/Card";
 import CartItem from "./components/CartItem";
 
 import { useSelector, useDispatch } from "react-redux";
+import { getTotal } from "./store/cartSlice";
 
 const App = () => {
-  const { currentProducts } = useSelector((state) => state.product);
-  const { cartItems } = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
 
+  const { currentProducts } = useSelector((state) => state.product);
+  const { cartItems, cartTotalAmount } = useSelector((state) => state.cart);
+
+  const isEmpty = cartItems.length <= 0;
+
+  useEffect(() => {
+    dispatch(getTotal());
+  }, [cartItems, dispatch]);
   return (
     <div className="mainLayout">
       <header>Header</header>
@@ -21,6 +29,7 @@ const App = () => {
           {cartItems?.map((cartItem) => {
             return <CartItem cartItem={cartItem} key={cartItem._id} />;
           })}
+          {!isEmpty && <p>Total: ${cartTotalAmount} </p>}
         </div>
       </div>
     </div>

@@ -91,8 +91,18 @@ const cartSlice = createSlice({
         return state;
       });
     },
+
+    // get total from cart
+    getTotal: (state) => {
+      const total = state.cartItems.reduce(
+        (cartTotal, cartItem) => (cartTotal += cartItem.subTotal * 1),
+        0
+      );
+
+      state.cartTotalAmount = parseFloat(total).toFixed(2);
+    },
   },
 });
 
-export const { addToCart, removeFromCart } = cartSlice.actions;
+export const { addToCart, removeFromCart, getTotal } = cartSlice.actions;
 export default cartSlice.reducer;
