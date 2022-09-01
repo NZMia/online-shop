@@ -8,15 +8,17 @@ const App = () => {
   const { currentProducts } = useSelector((state) => state.product);
 
   return (
-    <div className="page">
+    <div className="mainLayout">
       <header>Header</header>
-      <div className="page__left">
-        {currentProducts?.map((product) => {
-          return <Card product={product} key={product._id} />;
-        })}
-      </div>
-      <div className="page__right">
-        <CartItem />
+      <div className="page">
+        <div className="page__left">
+          {currentProducts?.map((product) => {
+            return <Card product={product} key={product._id} />;
+          })}
+        </div>
+        <div className="page__right">
+          <CartItem />
+        </div>
       </div>
     </div>
   );
