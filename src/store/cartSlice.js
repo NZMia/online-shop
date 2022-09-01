@@ -40,8 +40,25 @@ const cartSlice = createSlice({
         };
       }
     },
+
+    // remove product from cart
+    removeFromCart: (state, action) => {
+      state.cartItems.map((cartItem) => {
+        console.log(action.payload);
+        // get matched product from _id
+        if (cartItem._id === action.payload._id) {
+          // remove it from the cartItem
+          const nextCartItems = state.cartItems.filter(
+            (item) => item._id !== cartItem._id
+          );
+
+          state.cartItems = nextCartItems;
+        }
+        return state;
+      });
+    },
   },
 });
 
-export const { addToCart } = cartSlice.actions;
+export const { addToCart, removeFromCart } = cartSlice.actions;
 export default cartSlice.reducer;

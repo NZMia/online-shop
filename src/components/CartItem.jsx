@@ -1,33 +1,38 @@
 /* eslint-disable jsx-a11y/aria-role */
 import React from "react";
+import { useDispatch } from "react-redux";
+import { removeFromCart } from "../store/cartSlice";
 
-const CartItem = () => {
+const CartItem = ({ cartItem }) => {
+  const dispatch = useDispatch();
+  const { name, price, qty, subTotal } = cartItem;
+  const unitPrice = parseFloat(price).toFixed(2);
+
   const handleRemove = (e) => {
-    console.log("e.target.value", e.target);
+    dispatch(removeFromCart(cartItem));
   };
   return (
-    <div className="card" role="card">
+    <div className="card flex flex-col space-y-4" role="card">
       <h5 className="card__title" role="title">
-        title
+        {name}
       </h5>
 
-      <div className="flex justify-between items-center mb-2">
-        <span className="card__subTitle" role="subTitle">
-          $99.99
-        </span>
-        <span className="card__subTitle" role="qty">
-          7
-        </span>
+      <p className="card__subTitle" role="subTitle">
+        ${unitPrice}
+      </p>
+      <p className="card__subTitle" role="qty">
+        {qty}
+      </p>
 
-        <button
-          className="text-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-          onClick={handleRemove}
-        >
-          Remove From Cart
-        </button>
-      </div>
+      <button
+        className="px-10 py-2 font-semibold rounded-full bg-pampas text-dark hover:text-yellow"
+        onClick={handleRemove}
+      >
+        Remove From Cart
+      </button>
+
       <p className="card__subTitle" role="subTotal">
-        subTitle: $89899
+        subTitle: ${subTotal}
       </p>
     </div>
   );
